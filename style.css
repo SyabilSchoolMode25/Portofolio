@@ -1,0 +1,491 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Tema Karasuno Haikyuu (Crow Black & Flame Orange) */
+:root {
+    --bg-main: #0d0d0d;         /* Hitam pekat jersey Karasuno */
+    --bg-dark: #171717;         /* Hitam kontras buat container */
+    --card-bg: #222222;         /* Abu-hitam kartu bento */
+    --card-header: #2a2a2a;     /* Header kartu */
+    --orange-primary: #ff6600;  /* Oranye khas Karasuno */
+    --orange-hover: #e65c00;    /* Oranye gelap pas hover */
+    --text-light: #ffffff;      /* Teks putih bersih */
+    --text-muted: #a3a3a3;      /* Subteks abu-abu */
+    --accent-black: #050505;    /* Hitam pekat footer */
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-light);
+    padding: 20px;
+}
+
+/* Container Bento Grid Utama */
+.portfolio-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Base Card Style */
+.item-1, .hero-left, .hero-right, .item-4, .item-5, .item-6, .item-7, .item-8, .item-9, .item-10 {
+    background: var(--card-bg);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+/* Icon Badge Lingkaran Oranye */
+.icon-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background-color: var(--orange-primary);
+    color: var(--text-light);
+    border-radius: 50%;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+/* --- 1: Navbar --- */
+.item-1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    background-color: var(--bg-dark);
+}
+
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--orange-primary);
+}
+
+.navbar .nav-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.navbar .nav-links a:hover {
+    color: var(--orange-primary);
+}
+
+/* --- 2 & 3: Hero (2 Kolom) --- */
+.hero-wrapper {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 16px;
+}
+
+.hero-left {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+}
+
+.badge-tag {
+    background: var(--orange-primary);
+    color: var(--text-light);
+    padding: 6px 12px;
+    border-radius: 20px;
+    width: fit-content;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.hero-left .name {
+    font-size: 2.2rem;
+    font-weight: 800;
+}
+
+.hero-left .bio {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.btn {
+    padding: 10px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background-color: var(--orange-primary);
+    color: var(--text-light);
+}
+
+.btn-primary:hover {
+    background-color: var(--orange-hover);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 2px solid var(--orange-primary);
+    color: var(--orange-primary);
+}
+
+.btn-secondary:hover {
+    background-color: var(--orange-primary);
+    color: var(--text-light);
+}
+
+.hero-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: var(--accent-black);
+    border:  1px solid var(--bg-dark);
+}
+
+.profile-pict img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--orange-primary);
+    box-shadow: 0 4px 12px rgba(255, 102, 0, 0.15);
+}
+
+/* --- 4: Funfact Section --- */
+.item-4 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 16px;
+    gap: 12px;
+    background-color: var(--bg-dark);
+}
+
+.fact-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--card-bg);
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Grid Layout (Kotak 5 & 6, 7 & 8) */
+.about-section, .experience-section, .projects-section, .skills-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.grid-two-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.card-header {
+    background-color: var(--card-header);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 2px solid var(--orange-primary);
+}
+
+.card-header h2 {
+    font-size: 1.2rem;
+    color: var(--text-light);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* Pembagian Baris Desktop (5 & 6, 7 & 8) */
+@media (min-width: 768px) {
+    .portfolio-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .item-1, .hero-wrapper, .item-4, .item-9, .item-10 {
+        grid-column: span 2;
+    }
+}
+
+/* Style Khusus About */
+.role-title {
+    margin-bottom: 14px;
+    color: var(--orange-primary);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.info-item .label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.info-item .value {
+    font-weight: 700;
+}
+
+/* --- 9: Contact Section --- */
+.item-9 {
+    padding: 24px;
+    background-color: var(--bg-dark);
+    text-align: center;
+    border-top: 3px solid var(--orange-primary);
+}
+
+.contact-content .text {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.info-badge {
+    background-color: var(--orange-primary);
+    color: var(--text-light);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+/* --- 10: Footer --- */
+.item-10 {
+    text-align: center;
+    padding: 14px;
+    background-color: var(--accent-black);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* Style Khusus Skill Bubble */
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-bubble {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    border: 1px solid var(--orange-primary);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.skill-bubble:hover {
+    background-color: var(--orange-primary);
+    color: var(--text-light);
+    transform: translateY(-2px);
+}
+
+/* Style Tombol Toggle Theme */
+.btn-theme {
+    background: transparent;
+    border: 1px solid var(--orange-primary);
+    color: var(--text-light);
+    padding: 6px 10px;
+    border-radius: 10%;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-left: 15px;
+    transition: all 0.2s ease;
+}
+
+.btn-theme:hover {
+    background-color: var(--orange-primary);
+    transform: scale(1.1);
+}
+
+/* Light Mode Variables Override */
+body.light-mode {
+    --bg-main: #f4f4f5;
+    --bg-dark: #ffffff;
+    --card-bg: #ffffff;
+    --card-header: #f4f4f5;
+    --text-light: #18181b;
+    --text-muted: #71717a;
+    --accent-black: #e4e4e7;
+}
+
+body.light-mode .item-1,
+body.light-mode .item-4,
+body.light-mode .item-9,
+body.light-mode .hero-right,
+body.light-mode .item-10 {
+    background-color: #ffffff;
+    border: 1px solid #e4e4e7;
+}
+
+body.light-mode .navbar .nav-links a {
+    color: #18181b;
+}
+
+body.light-mode .skill-bubble {
+    background-color: #f4f4f5;
+    color: #18181b;
+}
+
+/* Container Saklar Toggle */
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 130px;
+    height: 38px;
+    margin-left: 15px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Background Saklar Kapsul */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: var(--bg-dark);
+    border: 1px solid var(--orange-primary);
+    border-radius: 30px;
+    transition: 0.4s;
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
+}
+
+/* Bulatan Ikon (Default Dark Mode di Kanan) */
+.slider-icon {
+    width: 30px;
+    height: 30px;
+    background-color: var(--card-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    transition: 0.4s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    order: 2;
+    margin-left: auto;
+}
+
+/* Teks Mode */
+.slider-text {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: var(--text-light);
+    letter-spacing: 0.5px;
+    margin-left: 10px;
+    order: 1;
+    user-select: none;
+}
+
+/* State Pas Light Mode (Checkbox Checked) */
+.theme-switch input:checked + .slider {
+    background-color: #e4e4e7;
+    border-color: var(--orange-primary);
+}
+
+.theme-switch input:checked + .slider .slider-icon {
+    order: 1;
+    margin-left: 0;
+    background-color: #ffffff;
+}
+
+.theme-switch input:checked + .slider .slider-text {
+    order: 2;
+    margin-left: auto;
+    margin-right: 10px;
+    color: #18181b;
+}
+
+/* Fade-In saat Halaman Pertama Dimuat */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.portfolio-container > * {
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Efek Floating/Hover di Kartu Bento */
+.item-1, .hero-left, .hero-right, .item-4, .item-5, .item-6, .item-7, .item-8, .item-9, .item-10 {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.item-5:hover, .item-6:hover, .item-7:hover, .item-8:hover, .fact-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--orange-primary);
+    box-shadow: 0 12px 24px rgba(255, 102, 0, 0.15);
+}
+
+/* Efek Denyut Lingkaran Icon Badge */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
+.icon-badge {
+    animation: pulse 3s infinite ease-in-out;
+}
+
+.cursor {
+    color: var(--orange-primary);
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1;}
+    50% { opacity: 0}
+}
