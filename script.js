@@ -65,3 +65,22 @@ function typeWriter() {
 
 // Jalankan animasi ngetik setelah page load
 window.addEventListener('DOMContentLoaded', typeWriter);
+
+const hamburgerBtn = document.getElementById('hamburger-btn');
+const navMenu = document.getElementById('nav-menu');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+if (hamburgerBtn && navMenu) {
+    hamburgerBtn.addEventListener('click', () => {
+        hamburgerBtn.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    // Otomatis menutup menu kalau salah satu link diklik
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            hamburgerBtn.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+}
