@@ -69,8 +69,8 @@
                 <span class="icon-badge">★</span>
                 <span>Yuki Is Bad ASL</span>
             </div>
-            <div class="fact-card favoritedrink">
-                <span class="icon-badge">M</span>
+            <div class="fact-card favoritedrink" id="">
+                <span class="icon-badge milk-icon">M</span>
                 <span>Favorite Drink: Milk</span>
             </div>
             <div class="fact-card">
@@ -137,6 +137,43 @@
             </div>
         </section>
 
+        <!-- API Status Dashboard -->
+        <section id="api-status" class="status-section">
+            <div class="card-header">
+                <span class="icon-badge">API</span>
+                <h2>System & API Status</h2>
+            </div>
+            <div class="card-body">
+                <div class="status-grid">
+                    <div class="status-item">
+                        <div class="status-info">
+                            <span class="status-dot online"></span>
+                            <span class="status-name">Python CRUD Server</span>
+                        </div>
+                        <span class="status-latency" id="latency-1">Checking...</span>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-info">
+                            <span class="status-dot online"></span>
+                            <span class="status-name">Portfolio Database</span>
+                        </div>
+                        <span class="status-latency" id="latency-2">Checking...</span>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-info">
+                            <span class="status-dot online"></span>
+                            <span class="status-name">Authentication Service</span>
+                        </div>
+                        <span class="status-latency" id="latency-3">Checking...</span>
+                    </div>
+                </div>
+                <div class="status-footer">
+                    <span>Uptime: <strong>99.9%</strong></span>
+                    <span id="last-updated">Last checked: Just now</span>
+                </div>
+            </div>
+        </section>
+
         <!-- 8: Skills -->
         <section id="skills" class="skills-section item-8">
             <div class="card-header">
@@ -171,6 +208,31 @@
             Copyright © 2026 Bil. All rights reserved.
         </footer>
     </div>
+
+    <!-- Corner Decorations -->
+    <div class="corner-decor top-left">
+        <span>SYSTEM_ONLINE</span>
+        <span class="code-tag">v2.0.4</span>
+    </div>
+
+    <div class="corner-decor top-right">
+        <span class="pulse-dot"></span>
+        <span>SAMARINDA, ID</span>
+    </div>
+
+    <div class="corner-decor bottom-left">
+        <span>LAT: -0.5021 | LONG: 117.1536</span>
+    </div>
+
+    <div class="corner-decor bottom-right">
+        <span>BACKEND_ENGINEER</span>
+    </div>
+
+    <button class="hamburger" id="hamburger-btn" aria-label="Toggle Navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 
     <script src="script.js"></script>
 </body>
