@@ -3,32 +3,29 @@ const sliderIcon = document.querySelector('.slider-icon');
 const sliderText = document.querySelector('.slider-text');
 const currentTheme = localStorage.getItem('theme');
 
-// Set tema awal pas pertama kali di-load
+// Cek tema yang tersimpan
 if (currentTheme === 'light') {
     document.body.classList.add('light-mode');
-    toggleInput.checked = true;
-    sliderIcon.textContent = '☀️';
-    sliderText.textContent = 'LIGHT MODE';
-} else {
-    toggleInput.checked = false;
-    sliderIcon.textContent = '🌙';
-    sliderText.textContent = 'DARK MODE';
+    if (toggleInput) toggleInput.checked = true;
+    if (sliderIcon) sliderIcon.textContent = '☀️';
+    if (sliderText) sliderText.textContent = 'LIGHT MODE';
 }
 
-// Event listener pas saklar di-klik
-toggleInput.addEventListener('change', () => {
-    if (toggleInput.checked) {
-        document.body.classList.add('light-mode');
-        sliderIcon.textContent = '☀️';
-        sliderText.textContent = 'LIGHT MODE';
-        localStorage.setItem('theme', 'light');
-    } else {
-        document.body.classList.remove('light-mode');
-        sliderIcon.textContent = '🌙';
-        sliderText.textContent = 'DARK MODE';
-        localStorage.setItem('theme', 'dark');
-    }
-});
+if (toggleInput) {
+    toggleInput.addEventListener('change', () => {
+        if (toggleInput.checked) {
+            document.body.classList.add('light-mode');
+            sliderIcon.textContent = '☀️';
+            sliderText.textContent = 'LIGHT MODE';
+            localStorage.setItem('theme', 'light');
+        } else {
+            document.body.classList.remove('light-mode');
+            sliderIcon.textContent = '🌙';
+            sliderText.textContent = 'DARK MODE';
+            localStorage.setItem('theme', 'dark');
+        }
+    });
+}
 
 // Intersection Observer buat Efek Scroll Reveal
 const observerOptions = {
