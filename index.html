@@ -3,17 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio - Syabil</title>
+    <title>Portofolio - Syabil Azka Al Faraizhy</title>
+    <!-- Font Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="portfolio-container">
-
         <!-- 1: Navbar -->
         <nav class="navbar item-1">
             <div class="nav-header">
-                <div class="logo">Bil</div>
+                <div class="logo">Bil<span class="dot">.</span></div>
                 <button class="hamburger" id="hamburger-btn" aria-label="Toggle Navigation">
                     <span></span>
                     <span></span>
@@ -47,7 +50,7 @@
                 <h1 class="name">Syabil Azka Al Faraizhy</h1>
                 <p class="bio"><span id="typing-text"></span><span class="cursor">|</span></p>
                 <div class="hero-btns">
-                    <a href="#projects" class="btn btn-primary">Projects -&gt;</a>
+                    <a href="#projects" class="btn btn-primary">Projects &rarr;</a>
                     <a href="#contact" class="btn btn-secondary">Contact Me</a>
                 </div>
             </div>
@@ -55,7 +58,7 @@
             <!-- 3: Hero Right -->
             <div class="hero-right item-3">
                 <div class="profile-pict">
-                    <img src="ProfilePict.jpeg" alt="Profile Picture">
+                    <img src="download.jpeg" alt="Profile Picture">
                 </div>
             </div>
         </section>
@@ -71,7 +74,7 @@
                 <span>Favorite Drink: Milk</span>
             </div>
             <div class="fact-card">
-                <span class="icon-badge">R</span>
+                <span class="icon-badge">B</span>
                 <span>Role: Back End Dev</span>
             </div>
         </section>
@@ -99,7 +102,7 @@
                     </div>
                     <div class="info-item">
                         <span class="label">School</span>
-                        <p class="value">SMK TI Airlangga</p>
+                        <p class="value">SMK TI Airlangga Samarinda</p>
                     </div>
                 </div>
             </div>
@@ -112,7 +115,11 @@
                 <h2>Experience</h2>
             </div>
             <div class="card-body">
-                <p>Null</p>
+                <div class="exp-item">
+                    <h4 class="exp-title">Lorem ipsum dolor sit amet</h4>
+                    <span class="exp-date">Lorem ipsum dolor sit amet</span>
+                    <p class="exp-desc">Lorem ipsum dolor sit amet</p>
+                </div>
             </div>
         </section>
 
@@ -123,7 +130,10 @@
                 <h2>Projects</h2>
             </div>
             <div class="card-body">
-                <p>This Project</p>
+                <div class="project-item">
+                    <h4>Anime Data CRUD Program</h4>
+                    <p>Python-backed CLI/Data System for anime library management created for Gelar Karya.</p>
+                </div>
             </div>
         </section>
 
@@ -135,10 +145,12 @@
             </div>
             <div class="card-body">
                 <div class="skills-container">
-                    <span class="skill-bubble">Debugging</span>
-                    <span class="skill-bubble">Holy Logic</span>
                     <span class="skill-bubble">Python</span>
-                    <span class="skill-bubble">JS</span>
+                    <span class="skill-bubble">JavaScript</span>
+                    <span class="skill-bubble">HTML</span>
+                    <span class="skill-bubble">Debugging</span>
+                    <span class="skill-bubble">C++</span>
+                    <span class="skill-bubble">Lua</span>
                 </div>
             </div>
         </section>
@@ -146,7 +158,7 @@
         <!-- 9: Contact -->
         <section id="contact" class="contact-section item-9">
             <div class="contact-content">
-                <div class="text">Lets Make Project Together!</div>
+                <div class="text">Let's Make Projects Together!</div>
                 <div class="contact-info">
                     <span class="info-badge">syabilazkaalfaraizhy@gmail.com</span>
                     <span class="info-badge">Samarinda</span>
@@ -158,7 +170,6 @@
         <footer class="footer item-10">
             Copyright © 2026 Bil. All rights reserved.
         </footer>
-
     </div>
 
     <script src="script.js"></script>
