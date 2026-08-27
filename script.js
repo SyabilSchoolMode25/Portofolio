@@ -255,4 +255,8 @@ function typeLoop() {
     setTimeout(typeLoop, speed);
 }
 
+<<<<<<< HEAD
 typeLoop();
+=======
+typeLoop();
+>>>>>>> 4451cf96013d3c0f9b1d96d4e8d0483ec82d17b0
