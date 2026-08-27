@@ -1,491 +1,734 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-/* Tema Karasuno Haikyuu (Crow Black & Flame Orange) */
 :root {
-    --bg-main: #0d0d0d;         /* Hitam pekat jersey Karasuno */
-    --bg-dark: #171717;         /* Hitam kontras buat container */
-    --card-bg: #222222;         /* Abu-hitam kartu bento */
-    --card-header: #2a2a2a;     /* Header kartu */
-    --orange-primary: #ff6600;  /* Oranye khas Karasuno */
-    --orange-hover: #e65c00;    /* Oranye gelap pas hover */
-    --text-light: #ffffff;      /* Teks putih bersih */
-    --text-muted: #a3a3a3;      /* Subteks abu-abu */
-    --accent-black: #050505;    /* Hitam pekat footer */
+  --bg-color: #0d0f12;
+  --card-bg: #161b22;
+  --accent-color: #58a6ff;
+  --text-main: #f0f6fc;
+  --text-sub: #8b949e;
+  --border-color: #30363d;
+  --font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background-color: var(--bg-main);
-    color: var(--text-light);
-    padding: 20px;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-family);
+  line-height: 1.6;
 }
 
-/* Container Bento Grid Utama */
+/* Base Container Stack Layout */
 .portfolio-container {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
 
-/* Base Card Style */
-.item-1, .hero-left, .hero-right, .item-4, .item-5, .item-6, .item-7, .item-8, .item-9, .item-10 {
-    background: var(--card-bg);
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
+/* 1: Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--card-bg);
+  padding: 16px 24px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
 }
 
-/* Icon Badge Lingkaran Oranye */
-.icon-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    background-color: var(--orange-primary);
-    color: var(--text-light);
-    border-radius: 50%;
-    font-size: 0.9rem;
-    font-weight: bold;
+.logo {
+  font-weight: 800;
+  font-size: 1.4rem;
 }
 
-/* --- 1: Navbar --- */
-.item-1 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 24px;
-    background-color: var(--bg-dark);
+.logo .dot {
+  color: var(--accent-color);
 }
 
-.navbar .logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--orange-primary);
+.nav-links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
 }
 
-.navbar .nav-links a {
-    color: var(--text-light);
-    text-decoration: none;
-    margin-left: 20px;
-    font-weight: 600;
-    transition: color 0.2s;
+.nav-links a {
+  color: var(--text-main);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
 }
 
-.navbar .nav-links a:hover {
-    color: var(--orange-primary);
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  right: 24px;
+  transform: translateY(-50%);
+  z-index: 10;
 }
 
-/* --- 2 & 3: Hero (2 Kolom) --- */
+/* 2 & 3: Hero Section */
 .hero-wrapper {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 16px;
-}
-
-.hero-left {
-    padding: 32px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--card-bg);
+  padding: 40px;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  gap: 24px;
 }
 
 .badge-tag {
-    background: var(--orange-primary);
-    color: var(--text-light);
-    padding: 6px 12px;
-    border-radius: 20px;
-    width: fit-content;
-    font-size: 0.85rem;
-    font-weight: 600;
+  color: var(--accent-color);
+  font-weight: 700;
+  font-size: 0.9rem;
 }
 
-.hero-left .name {
-    font-size: 2.2rem;
-    font-weight: 800;
-}
-
-.hero-left .bio {
-    color: var(--text-muted);
-    font-style: italic;
+.name {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin: 8px 0;
 }
 
 .hero-btns {
-    display: flex;
-    gap: 12px;
-    margin-top: 8px;
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
 }
 
 .btn {
-    padding: 10px 18px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 700;
-    transition: all 0.2s;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
 }
 
 .btn-primary {
-    background-color: var(--orange-primary);
-    color: var(--text-light);
-}
-
-.btn-primary:hover {
-    background-color: var(--orange-hover);
+  background-color: var(--accent-color);
+  color: #000;
 }
 
 .btn-secondary {
-    background-color: transparent;
-    border: 2px solid var(--orange-primary);
-    color: var(--orange-primary);
-}
-
-.btn-secondary:hover {
-    background-color: var(--orange-primary);
-    color: var(--text-light);
-}
-
-.hero-right {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background-color: var(--accent-black);
-    border:  1px solid var(--bg-dark);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
 }
 
 .profile-pict img {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid var(--orange-primary);
-    box-shadow: 0 4px 12px rgba(255, 102, 0, 0.15);
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--accent-color);
 }
 
-/* --- 4: Funfact Section --- */
-.item-4 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    padding: 16px;
-    gap: 12px;
-    background-color: var(--bg-dark);
+/* 4: Fun Fact Section */
+.funfact-section {
+  display: flex;
+  gap: 16px;
 }
 
 .fact-card {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background-color: var(--card-bg);
-    padding: 12px;
-    border-radius: 10px;
-    font-weight: 600;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+  flex: 1;
+  background-color: var(--card-bg);
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
 }
 
-/* Grid Layout (Kotak 5 & 6, 7 & 8) */
-.about-section, .experience-section, .projects-section, .skills-section {
-    display: flex;
-    flex-direction: column;
-}
-
-.grid-two-cols {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
+/* Generic Section Styles (5, 6, 7, 8) */
+.about-section,
+.experience-section,
+.projects-section,
+.skills-section {
+  background-color: var(--card-bg);
+  padding: 32px;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
 }
 
 .card-header {
-    background-color: var(--card-header);
-    padding: 14px 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border-bottom: 2px solid var(--orange-primary);
-}
-
-.card-header h2 {
-    font-size: 1.2rem;
-    color: var(--text-light);
-}
-
-.card-body {
-    padding: 20px;
-}
-
-/* Pembagian Baris Desktop (5 & 6, 7 & 8) */
-@media (min-width: 768px) {
-    .portfolio-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .item-1, .hero-wrapper, .item-4, .item-9, .item-10 {
-        grid-column: span 2;
-    }
-}
-
-/* Style Khusus About */
-.role-title {
-    margin-bottom: 14px;
-    color: var(--orange-primary);
-}
-
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-}
-
-.info-item .label {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-}
-
-.info-item .value {
-    font-weight: 700;
-}
-
-/* --- 9: Contact Section --- */
-.item-9 {
-    padding: 24px;
-    background-color: var(--bg-dark);
-    text-align: center;
-    border-top: 3px solid var(--orange-primary);
-}
-
-.contact-content .text {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 12px;
-}
-
-.contact-info {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-.info-badge {
-    background-color: var(--orange-primary);
-    color: var(--text-light);
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-weight: 600;
-}
-
-/* --- 10: Footer --- */
-.item-10 {
-    text-align: center;
-    padding: 14px;
-    background-color: var(--accent-black);
-    font-size: 0.85rem;
-    color: var(--text-muted);
-}
-
-/* Style Khusus Skill Bubble */
-.skills-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.skill-bubble {
-    background-color: var(--bg-dark);
-    color: var(--text-light);
-    border: 1px solid var(--orange-primary);
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    transition: all 0.2s ease;
-}
-
-.skill-bubble:hover {
-    background-color: var(--orange-primary);
-    color: var(--text-light);
-    transform: translateY(-2px);
-}
-
-/* Style Tombol Toggle Theme */
-.btn-theme {
-    background: transparent;
-    border: 1px solid var(--orange-primary);
-    color: var(--text-light);
-    padding: 6px 10px;
-    border-radius: 10%;
-    cursor: pointer;
-    font-size: 1rem;
-    margin-left: 15px;
-    transition: all 0.2s ease;
-}
-
-.btn-theme:hover {
-    background-color: var(--orange-primary);
-    transform: scale(1.1);
-}
-
-/* Light Mode Variables Override */
-body.light-mode {
-    --bg-main: #f4f4f5;
-    --bg-dark: #ffffff;
-    --card-bg: #ffffff;
-    --card-header: #f4f4f5;
-    --text-light: #18181b;
-    --text-muted: #71717a;
-    --accent-black: #e4e4e7;
-}
-
-body.light-mode .item-1,
-body.light-mode .item-4,
-body.light-mode .item-9,
-body.light-mode .hero-right,
-body.light-mode .item-10 {
-    background-color: #ffffff;
-    border: 1px solid #e4e4e7;
-}
-
-body.light-mode .navbar .nav-links a {
-    color: #18181b;
-}
-
-body.light-mode .skill-bubble {
-    background-color: #f4f4f5;
-    color: #18181b;
-}
-
-/* Container Saklar Toggle */
-.theme-switch {
-    position: relative;
-    display: inline-block;
-    width: 130px;
-    height: 38px;
-    margin-left: 15px;
-}
-
-.theme-switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-/* Background Saklar Kapsul */
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-color: var(--bg-dark);
-    border: 1px solid var(--orange-primary);
-    border-radius: 30px;
-    transition: 0.4s;
-    display: flex;
-    align-items: center;
-    padding: 3px;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
-}
-
-/* Bulatan Ikon (Default Dark Mode di Kanan) */
-.slider-icon {
-    width: 30px;
-    height: 30px;
-    background-color: var(--card-bg);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.85rem;
-    transition: 0.4s;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-    order: 2;
-    margin-left: auto;
-}
-
-/* Teks Mode */
-.slider-text {
-    font-size: 0.7rem;
-    font-weight: 800;
-    color: var(--text-light);
-    letter-spacing: 0.5px;
-    margin-left: 10px;
-    order: 1;
-    user-select: none;
-}
-
-/* State Pas Light Mode (Checkbox Checked) */
-.theme-switch input:checked + .slider {
-    background-color: #e4e4e7;
-    border-color: var(--orange-primary);
-}
-
-.theme-switch input:checked + .slider .slider-icon {
-    order: 1;
-    margin-left: 0;
-    background-color: #ffffff;
-}
-
-.theme-switch input:checked + .slider .slider-text {
-    order: 2;
-    margin-left: auto;
-    margin-right: 10px;
-    color: #18181b;
-}
-
-/* Fade-In saat Halaman Pertama Dimuat */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.portfolio-container > * {
-    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* Efek Floating/Hover di Kartu Bento */
-.item-1, .hero-left, .hero-right, .item-4, .item-5, .item-6, .item-7, .item-8, .item-9, .item-10 {
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-}
-
-.item-5:hover, .item-6:hover, .item-7:hover, .item-8:hover, .fact-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--orange-primary);
-    box-shadow: 0 12px 24px rgba(255, 102, 0, 0.15);
-}
-
-/* Efek Denyut Lingkaran Icon Badge */
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.08); }
-    100% { transform: scale(1); }
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
 .icon-badge {
-    animation: pulse 3s infinite ease-in-out;
+  background-color: var(--border-color);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
 }
 
-.cursor {
-    color: var(--orange-primary);
-    animation: blink 0.7s infinite;
+.role-title {
+  color: var(--accent-color);
+  margin-bottom: 16px;
 }
 
-@keyframes blink {
-    0%, 100% { opacity: 1;}
-    50% { opacity: 0}
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.info-item .label {
+  font-size: 0.8rem;
+  color: var(--text-sub);
+}
+
+.info-item .value {
+  font-weight: 600;
+}
+
+.exp-item,
+.project-item {
+  background-color: var(--bg-color);
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+}
+
+.exp-date {
+  font-size: 0.85rem;
+  color: var(--accent-color);
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skill-bubble {
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* 9: Contact Section */
+.contact-section {
+  background-color: var(--card-bg);
+  padding: 32px;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.contact-content .text {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.contact-info {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.info-badge {
+  background-color: var(--bg-color);
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  font-size: 0.9rem;
+}
+
+/* 10: Footer */
+.footer {
+  text-align: center;
+  color: var(--text-sub);
+  font-size: 0.85rem;
+  padding: 16px 0;
+}
+
+/* Responsive Breakdown */
+@media (max-width: 768px) {
+  .hero-wrapper {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+  .hero-btns {
+    justify-content: center;
+  }
+  .funfact-section {
+    flex-direction: column;
+  }
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Variabel Warna Light Mode */
+body.light-mode {
+  --bg-color: #f6f8fa;
+  --card-bg: #ffffff;
+  --accent-color: #0969da;
+  --text-main: #1f2328;
+  --text-sub: #656d76;
+  --border-color: #d0d7de;
+}
+
+/* Style Saklar Toggle */
+.theme-switch {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.theme-switch input {
+  display: none; /* Sembunyiin checkbox default */
+}
+
+.slider {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.theme-switch:hover .slider {
+  border-color: var(--accent-color);
+}
+
+.status-section {
+    background-color: var(--card-bg);
+    padding: 32px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+}
+
+.status-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.status-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bg-color);
+    padding: 14px 18px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+}
+
+.status-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-dot.online {
+    background-color: #2ea44f;
+    box-shadow: 0 0 8px rgba(46, 164, 79, 0.6);
+}
+
+.status-latency {
+    font-size: 0.85rem;
+    color: var(--accent-color);
+    font-weight: 700;
+    font-family: monospace;
+}
+
+.status-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--text-sub);
+    padding-top: 12px;
+    border-top: 1px dashed var(--border-color);
+}
+
+/* Fixed Corner Elements */
+.corner-decor {
+    position: fixed;
+    z-index: 999;
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: var(--text-sub);
+    letter-spacing: 1px;
+    opacity: 0.6;
+    pointer-events: none; /* Biar gak ganggu klik elemen lain */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    user-select: none;
+}
+
+.top-left {
+    top: 16px;
+    left: 20px;
+}
+
+.top-right {
+    top: 16px;
+    right: 20px;
+}
+
+.bottom-left {
+    bottom: 16px;
+    left: 20px;
+}
+
+.bottom-right {
+    bottom: 16px;
+    right: 20px;
+}
+
+.code-tag {
+    background-color: var(--border-color);
+    color: var(--accent-color);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+}
+
+.pulse-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #2ea44f;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #2ea44f;
+}
+
+/* Sembunyikan hiasan di layar HP biar gak ngerusak layout mobile */
+@media (max-width: 768px) {
+    .corner-decor {
+        display: none;
+    }
+}
+
+/* Efek Hover Membal Naik di Badge M */
+.favoritedrink {
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.favoritedrink:hover {
+  transform: translateY(-8px) scale(1.03);
+  border-color: var(--accent-color);
+}
+
+.favoritedrink:hover .milk-icon {
+  background-color: var(--accent-color);
+  color: #000;
+  transition: all 0.3s ease;
+}
+
+/* Container & Animasi Hujan Emoji Susu */
+.milk-shower-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99999;
+  overflow: hidden;
+}
+
+.falling-milk {
+  position: absolute;
+  top: -50px;
+  font-size: 2.5rem;
+  user-select: none;
+  animation: floatDown 2s linear forwards;
+}
+
+@keyframes floatDown {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(105vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Mode Retro Matrix (Konami Code Event) */
+body.matrix-mode {
+  --bg-color: #050b05 !important;
+  --card-bg: #0a150a !important;
+  --accent-color: #00ff66 !important;
+  --text-main: #00ff66 !important;
+  --text-sub: #009933 !important;
+  --border-color: #004411 !important;
+  font-family: 'Courier New', Courier, monospace !important;
+  transition: all 0.3s ease;
+}
+
+body.matrix-mode .card-header,
+body.matrix-mode .exp-item,
+body.matrix-mode .project-item,
+body.matrix-mode .fact-card,
+body.matrix-mode .info-badge,
+body.matrix-mode .skill-bubble {
+  box-shadow: 0 0 10px rgba(0, 255, 102, 0.2);
+  border-color: #00ff66 !important;
+}
+
+/* Modal Alert Pop-up Retro */
+.matrix-toast {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background-color: #0a150a;
+  border: 2px solid #00ff66;
+  color: #00ff66;
+  padding: 24px 32px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 255, 102, 0.5);
+  z-index: 100000;
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.matrix-toast.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.matrix-toast h3 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.matrix-toast p {
+  font-size: 0.9rem;
+  color: #009933;
+}
+
+/* Styling Profil Pict & Animation Glitch */
+.profile-pict img {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.profile-pict img:hover {
+  transform: scale(1.05);
+}
+
+/* State Glitch 69 Detik */
+.profile-pict img.glitching {
+  animation: cyberGlitch 0.2s infinite;
+  filter: drop-shadow(-4px 0px 0px #00ff66) drop-shadow(4px 0px 0px #58a6ff);
+}
+
+@keyframes cyberGlitch {
+  0% {
+    transform: translate(0);
+    clip-path: inset(0 0 0 0);
+  }
+  20% {
+    transform: translate(-3px, 3px);
+    clip-path: inset(15% 0 60% 0);
+  }
+  40% {
+    transform: translate(-3px, -3px);
+    clip-path: inset(40% 0 20% 0);
+  }
+  60% {
+    transform: translate(3px, 3px);
+    clip-path: inset(70% 0 5% 0);
+  }
+  80% {
+    transform: translate(3px, -3px);
+    clip-path: inset(10% 0 80% 0);
+  }
+  100% {
+    transform: translate(0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Styling Tombol Hamburger & Garisnya */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.hamburger span {
+  width: 24px;
+  height: 2px;
+  background-color: var(--text-main);
+  transition: all 0.3s ease;
+}
+
+/* Fix Offside di Contact Info & Words Wrap */
+.contact-section {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.contact-info {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap; /* Mencegah badge email offset di layar kecil */
+}
+
+.info-badge {
+  max-width: 100%;
+  word-break: break-all; /* Supaya alamat email panjang gak offside */
+}
+
+/* Responsive Breakpoint (Layar 768px ke bawah) */
+@media (max-width: 768px) {
+  .navbar {
+    position: relative;
+    flex-wrap: wrap;
+  }
+
+  .hamburger {
+    display: flex; /* Muncukin tombol burger di mobile */
+  }
+
+  .nav-links {
+    display: none; /* Sembunyiin menu default */
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding-top: 20px;
+    margin-top: 10px;
+    border-top: 1px solid var(--border-color);
+  }
+
+  /* State pas Hamburger Menu aktif */
+  .nav-links.active {
+    display: flex;
+  }
+
+  .contact-info {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .info-badge {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.navbar {
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.hamburger span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: var(--text-main);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+.contact-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.info-badge {
+  max-width: 100%;
+  word-break: break-word;
+}
+
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+
+  .nav-header { width: 100%; }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 16px;
+    padding-top: 16px;
+    margin-top: 16px;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .nav-links.active { display: flex; }
+
+  .contact-info {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .info-badge { width: 100%; }
 }

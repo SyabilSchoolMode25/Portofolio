@@ -3,23 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio - Syabil</title>
+    <title>Portofolio - Syabil Azka Al Faraizhy</title>
+    <!-- Font Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="portfolio-container">
-
         <!-- 1: Navbar -->
         <nav class="navbar item-1">
-            <div class="logo">Bil</div>
-            <div class="nav-links">
+            <div class="nav-header">
+                <div class="logo">Bil<span class="dot">.</span></div>
+                <button class="hamburger" id="hamburger-btn" aria-label="Toggle Navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+
+            <div class="nav-links" id="nav-menu">
                 <a href="#home">Home</a>
                 <a href="#about">About</a>
                 <a href="#experience">Experience</a>
                 <a href="#projects">Projects</a>
                 <a href="#skills">Skills</a>
                 <a href="#contact">Contact</a>
+                
                 <label class="theme-switch">
                     <input type="checkbox" id="theme-toggle">
                     <span class="slider">
@@ -38,7 +50,7 @@
                 <h1 class="name">Syabil Azka Al Faraizhy</h1>
                 <p class="bio"><span id="typing-text"></span><span class="cursor">|</span></p>
                 <div class="hero-btns">
-                    <a href="#projects" class="btn btn-primary">Projects -&gt;</a>
+                    <a href="#projects" class="btn btn-primary">Projects &rarr;</a>
                     <a href="#contact" class="btn btn-secondary">Contact Me</a>
                 </div>
             </div>
@@ -46,7 +58,7 @@
             <!-- 3: Hero Right -->
             <div class="hero-right item-3">
                 <div class="profile-pict">
-                    <img src="ProfilePict.jpeg" alt="Profile Picture">
+                    <img src="download.jpeg" alt="Profile Picture">
                 </div>
             </div>
         </section>
@@ -57,12 +69,12 @@
                 <span class="icon-badge">★</span>
                 <span>Yuki Is Bad ASL</span>
             </div>
-            <div class="fact-card favoritedrink">
-                <span class="icon-badge">M</span>
+            <div class="fact-card favoritedrink" id="">
+                <span class="icon-badge milk-icon">M</span>
                 <span>Favorite Drink: Milk</span>
             </div>
             <div class="fact-card">
-                <span class="icon-badge">R</span>
+                <span class="icon-badge">B</span>
                 <span>Role: Back End Dev</span>
             </div>
         </section>
@@ -90,7 +102,7 @@
                     </div>
                     <div class="info-item">
                         <span class="label">School</span>
-                        <p class="value">SMK TI Airlangga</p>
+                        <p class="value">SMK TI Airlangga Samarinda</p>
                     </div>
                 </div>
             </div>
@@ -103,7 +115,11 @@
                 <h2>Experience</h2>
             </div>
             <div class="card-body">
-                <p>Null</p>
+                <div class="exp-item">
+                    <h4 class="exp-title">Lorem ipsum dolor sit amet</h4>
+                    <span class="exp-date">Lorem ipsum dolor sit amet</span>
+                    <p class="exp-desc">Lorem ipsum dolor sit amet</p>
+                </div>
             </div>
         </section>
 
@@ -114,7 +130,47 @@
                 <h2>Projects</h2>
             </div>
             <div class="card-body">
-                <p>This Project</p>
+                <div class="project-item">
+                    <h4>Anime Data CRUD Program</h4>
+                    <p>Python-backed CLI/Data System for anime library management created for Gelar Karya.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- API Status Dashboard -->
+        <section id="api-status" class="status-section">
+            <div class="card-header">
+                <span class="icon-badge">API</span>
+                <h2>System & API Status</h2>
+            </div>
+            <div class="card-body">
+                <div class="status-grid">
+                    <div class="status-item">
+                        <div class="status-info">
+                            <span class="status-dot online"></span>
+                            <span class="status-name">Python CRUD Server</span>
+                        </div>
+                        <span class="status-latency" id="latency-1">Checking...</span>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-info">
+                            <span class="status-dot online"></span>
+                            <span class="status-name">Portfolio Database</span>
+                        </div>
+                        <span class="status-latency" id="latency-2">Checking...</span>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-info">
+                            <span class="status-dot online"></span>
+                            <span class="status-name">Authentication Service</span>
+                        </div>
+                        <span class="status-latency" id="latency-3">Checking...</span>
+                    </div>
+                </div>
+                <div class="status-footer">
+                    <span>Uptime: <strong>99.9%</strong></span>
+                    <span id="last-updated">Last checked: Just now</span>
+                </div>
             </div>
         </section>
 
@@ -126,10 +182,12 @@
             </div>
             <div class="card-body">
                 <div class="skills-container">
-                    <span class="skill-bubble">Debugging</span>
-                    <span class="skill-bubble">Holy Logic</span>
                     <span class="skill-bubble">Python</span>
-                    <span class="skill-bubble">JS</span>
+                    <span class="skill-bubble">JavaScript</span>
+                    <span class="skill-bubble">HTML</span>
+                    <span class="skill-bubble">Debugging</span>
+                    <span class="skill-bubble">C++</span>
+                    <span class="skill-bubble">Lua</span>
                 </div>
             </div>
         </section>
@@ -137,7 +195,7 @@
         <!-- 9: Contact -->
         <section id="contact" class="contact-section item-9">
             <div class="contact-content">
-                <div class="text">Lets Make Project Together!</div>
+                <div class="text">Let's Make Projects Together!</div>
                 <div class="contact-info">
                     <span class="info-badge">syabilazkaalfaraizhy@gmail.com</span>
                     <span class="info-badge">Samarinda</span>
@@ -149,8 +207,32 @@
         <footer class="footer item-10">
             Copyright © 2026 Bil. All rights reserved.
         </footer>
-
     </div>
+
+    <!-- Corner Decorations -->
+    <div class="corner-decor top-left">
+        <span>SYSTEM_ONLINE</span>
+        <span class="code-tag">v2.0.4</span>
+    </div>
+
+    <div class="corner-decor top-right">
+        <span class="pulse-dot"></span>
+        <span>SAMARINDA, ID</span>
+    </div>
+
+    <div class="corner-decor bottom-left">
+        <span>LAT: -0.5021 | LONG: 117.1536</span>
+    </div>
+
+    <div class="corner-decor bottom-right">
+        <span>BACKEND_ENGINEER</span>
+    </div>
+
+    <button class="hamburger" id="hamburger-btn" aria-label="Toggle Navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 
     <script src="script.js"></script>
 </body>
