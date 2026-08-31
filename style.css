@@ -23,7 +23,7 @@ body {
 
 /* Base Container Stack Layout */
 .portfolio-container {
-  max-width: 900px;
+  max-width: 1500px;
   margin: 0 auto;
   padding: 20px;
   display: flex;
@@ -620,34 +620,27 @@ body.matrix-mode .skill-bubble {
 }
 
 /* State Glitch 69 Detik */
-.profile-pict img.glitching {
-  animation: cyberGlitch 0.2s infinite;
-  filter: drop-shadow(-4px 0px 0px #00ff66) drop-shadow(4px 0px 0px #58a6ff);
+.profile-pict {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
-@keyframes cyberGlitch {
-  0% {
-    transform: translate(0);
-    clip-path: inset(0 0 0 0);
-  }
-  20% {
-    transform: translate(-3px, 3px);
-    clip-path: inset(15% 0 60% 0);
-  }
-  40% {
-    transform: translate(-3px, -3px);
-    clip-path: inset(40% 0 20% 0);
-  }
-  60% {
-    transform: translate(3px, 3px);
-    clip-path: inset(70% 0 5% 0);
-  }
-  80% {
-    transform: translate(3px, -3px);
-    clip-path: inset(10% 0 80% 0);
-  }
-  100% {
-    transform: translate(0);
-    clip-path: inset(0 0 0 0);
-  }
+.profile-pict img {
+  display: block;
+}
+
+.evil-grid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  pointer-events: none;
+}
+
+.evil-block {
+  background-image: url('download.jpeg');
+  opacity: 0;
+  filter: grayscale(1) sepia(1) hue-rotate(-50deg) saturate(7) contrast(1.6) brightness(0.55);
 }

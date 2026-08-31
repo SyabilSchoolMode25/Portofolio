@@ -58,7 +58,7 @@ if (hamburgerBtn && navMenu) {
 const typingEl = document.getElementById('typing-text');
 const bioTexts = [
     "Back End Developer",
-    "Python & JavaScript Enthusiast",
+    "Problem Solving Enthusiast",
     "Building Anime CRUD Systems"
 ];
 
@@ -123,24 +123,83 @@ if (milkBadge) {
 }
 
 // ===== Profile Picture Glitch Effect =====
+// ===== Profile Picture "Consumed by Evil" Pixel Effect =====
 const profileImg = document.querySelector('.profile-pict img');
-let glitchTimer = null;
+const evilGrid = document.getElementById('evil-grid');
+const GRID_SIZE = 10; // 10x10 = 100 blok
+let blocks = [];
+let corruptTimer = null;
+let isEvil = false;
+
+function buildGrid() {
+    if (!evilGrid) return;
+    evilGrid.style.gridTemplateColumns = `repeat(${GRID_SIZE}, 1fr)`;
+    evilGrid.style.gridTemplateRows = `repeat(${GRID_SIZE}, 1fr)`;
+
+    for (let row = 0; row < GRID_SIZE; row++) {
+        for (let col = 0; col < GRID_SIZE; col++) {
+            const block = document.createElement('div');
+            block.className = 'evil-block';
+            block.style.backgroundSize = `${GRID_SIZE * 100}% ${GRID_SIZE * 100}%`;
+            block.style.backgroundPosition =
+                `${(col / (GRID_SIZE - 1)) * 100}% ${(row / (GRID_SIZE - 1)) * 100}%`;
+            evilGrid.appendChild(block);
+            blocks.push(block);
+        }
+    }
+}
+
+function shuffle(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
+function consumeImage() {
+    const order = shuffle(blocks);
+    const totalTime = 1400; // total durasi "dimakan" pixel by pixel
+    const delayStep = totalTime / order.length;
+
+    order.forEach((block, i) => {
+        setTimeout(() => {
+            block.style.opacity = '1';
+        }, i * delayStep);
+    });
+}
+
+function healImage() {
+    const order = shuffle(blocks);
+    const totalTime = 900;
+    const delayStep = totalTime / order.length;
+
+    order.forEach((block, i) => {
+        setTimeout(() => {
+            block.style.opacity = '0';
+        }, i * delayStep);
+    });
+}
+
+buildGrid();
 
 if (profileImg) {
     profileImg.addEventListener('click', () => {
-        // Kalau lagi glitch terus diklik lagi, langsung stop
-        if (profileImg.classList.contains('glitching')) {
-            profileImg.classList.remove('glitching');
-            clearTimeout(glitchTimer);
+        if (isEvil) {
+            healImage();
+            isEvil = false;
+            clearTimeout(corruptTimer);
             return;
         }
 
-        // Aktifkan efek glitch
-        profileImg.classList.add('glitching');
+        consumeImage();
+        isEvil = true;
 
-        // Timer pas 69 detik (69000 ms)
-        glitchTimer = setTimeout(() => {
-            profileImg.classList.remove('glitching');
+        // Balik normal otomatis pas 69 detik
+        corruptTimer = setTimeout(() => {
+            healImage();
+            isEvil = false;
         }, 69000);
     });
 }
