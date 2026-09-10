@@ -1,15 +1,19 @@
 <?php
+session_start();
 $username = $_POST['username'];
 $password = $_POST['password'];
 
 if ($username === "syabil" && $password === "syabil6910") {
-    $status = "success";
-    $message = "Login berhasil, selamat datang $username!";
+    $_SESSION['is_login'] = true;
+    $_SESSION['username'] = $username;
+    header('Location: dashboard.php');
+    exit();
 } else {
     $status = "error";
-    $message = "Username atau password salah.";
+    $message = "Username or Password is wrong";
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
