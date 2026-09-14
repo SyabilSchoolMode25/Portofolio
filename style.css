@@ -110,6 +110,16 @@ body {
   transform: translateY(-8px) rotate(-45deg);
 }
 
+.nav-links a.login {
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  background-color: var(--accent-color);
+  color: #000;
+}
+
 /* 2 & 3: Hero Section */
 .hero-wrapper {
   display: flex;

@@ -1,7 +1,7 @@
 <?php
 session_start();
-$username = $_POST['username'];
-$password = $_POST['password'];
+$username = $_POST['username'] ?? '';
+$password = $_POST['password'] ?? '';
 
 if ($username === "syabil" && $password === "syabil6910") {
     $_SESSION['is_login'] = true;
@@ -9,7 +9,7 @@ if ($username === "syabil" && $password === "syabil6910") {
     header('Location: dashboard.php');
     exit();
 } else {
-    $status = "error";
+    $status = "Failed";
     $message = "Username or Password is wrong";
 }
 ?>
@@ -60,8 +60,8 @@ if ($username === "syabil" && $password === "syabil6910") {
 </head>
 <body>
     <div class="box">
-        <h2 style="color: <?php echo $status === 'success' ? '#2ea44f' : '#f85149'; ?>;">
-            <?php echo $status === 'Success!' ? 'Gagal!'; ?>
+        <h2 style="color: <?php echo $status === 'Failed' ? '#f85149' : '#2ea44f'; ?>;">
+            <?php echo $status === "Failed" ? "Failed!" : "Success!"; ?>
         </h2>
         <p><?php echo $message; ?></p>
         <a href="index.html">Back</a>
