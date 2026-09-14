@@ -656,3 +656,123 @@ body.matrix-mode .skill-bubble {
   filter: grayscale(1) sepia(1) hue-rotate(-50deg) saturate(7) contrast(1.6) brightness(0.55);
 }
 
+/* ===== MUSIC PLAYER ===== */
+.music-section {
+  background-color: var(--card-bg);
+  padding: 32px;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+}
+
+.music-player-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .music-player-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.music-player {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+}
+
+.album-art-wrapper {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.album-art {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent-color);
+    animation: spin 4s linear infinite;
+    animation-play-state: paused;
+}
+
+.album-art.playing {
+    animation-play-state: running;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.music-info {
+    flex: 1;
+}
+
+.music-info h3 {
+    font-size: 1rem;
+    margin-bottom: 4px;
+    color: var(--text-main);
+}
+
+.music-info p {
+    font-size: 0.85rem;
+    color: var(--text-sub);
+}
+
+.play-btn {
+    position: relative;
+    background-color: var(--accent-color);
+    color: #000;
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.play-btn:hover {
+    opacity: 0.9;
+}
+
+.play-btn .icon {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.25s ease;
+}
+
+.play-btn .icon-play {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+.play-btn .icon-pause {
+    opacity: 0;
+    transform: scale(0.4) rotate(-90deg);
+}
+
+.play-btn.playing .icon-play {
+    opacity: 0;
+    transform: scale(0.4) rotate(90deg);
+}
+
+.play-btn.playing .icon-pause {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}

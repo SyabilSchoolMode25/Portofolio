@@ -203,3 +203,36 @@ if (profileImg) {
         }, 69000);
     });
 }
+
+document.querySelectorAll('.music-player').forEach(player => {
+    const audio = player.querySelector('audio');
+    const playBtn = player.querySelector('.play-btn');
+    const albumArt = player.querySelector('.album-art');
+
+    playBtn.addEventListener('click', () => {
+        document.querySelectorAll('audio').forEach(a => {
+            if (a !== audio) a.pause();
+        });
+        document.querySelectorAll('.play-btn').forEach(b => {
+            if (b !== playBtn) b.classList.remove('playing');
+        });
+        document.querySelectorAll('.album-art').forEach(img => {
+            if (img !== albumArt) img.classList.remove('playing');
+        });
+
+        if (audio.paused) {
+            audio.play();
+            albumArt.classList.add('playing');
+            playBtn.classList.add('playing');
+        } else {
+            audio.pause();
+            albumArt.classList.remove('playing');
+            playBtn.classList.remove('playing');
+        }
+    });
+
+    audio.addEventListener('ended', () => {
+        albumArt.classList.remove('playing');
+        playBtn.classList.remove('playing');
+    });
+});
