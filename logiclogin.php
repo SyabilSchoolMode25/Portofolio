@@ -61,7 +61,7 @@ if ($username === "syabil" && $password === "syabil6910") {
 <body>
     <div class="box">
         <h2 style="color: <?php echo $status === 'success' ? '#2ea44f' : '#f85149'; ?>;">
-            <?php echo $status === 'success' ? 'Berhasil!' : 'Gagal!'; ?>
+            <?php echo $status === 'Success!' ? 'Gagal!'; ?>
         </h2>
         <p><?php echo $message; ?></p>
         <a href="index.html">Back</a>

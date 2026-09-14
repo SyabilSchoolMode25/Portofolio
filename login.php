@@ -77,7 +77,7 @@
         <input type="text" name="username" id="username" required>
         <label for="password">Password</label>
         <input type="password" name="password" id="password" required>
-        <button type="submit">Masuk</button>
+        <button type="submit">Login</button>
     </form>
 </body>
 </html>
