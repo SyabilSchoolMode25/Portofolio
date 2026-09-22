@@ -83,9 +83,9 @@
     <div class="topbar">
         <div class="logo">Bil<span class="dot">.</span></div>
         <div class="nav-actions">
-            <a href="projects.php" class="nav-btn secondary">Projects</a>
-            <a href="index.html" class="nav-btn secondary">Back to Portfolio</a>
-            <a href="logout.php" class="nav-btn primary">Logout</a>
+            <a href="/layout/projects.php" class="nav-btn secondary">Projects</a>
+            <a href="/index.html" class="nav-btn secondary">Back to Portfolio</a>
+            <a href="/logout.php" class="nav-btn primary">Logout</a>
         </div>
     </div>
 </body>
