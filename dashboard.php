@@ -19,6 +19,15 @@ require 'layout/header.php';
         color: var(--text-main);
         min-height: 100vh;
         padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .dashboard-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
     }
 
 /* Welcome card */
@@ -27,6 +36,7 @@ require 'layout/header.php';
         border: 1px solid var(--border-color);
         border-radius: 16px;
         padding: 32px;
+        margin-bottom: 24px;
     }
     .welcome-card .badge-tag {
         display: inline-block;
@@ -84,7 +94,7 @@ require 'layout/header.php';
     }
 </style>
 
-<body>
+<div class="dashboard-wrapper">
     <div class="welcome-card">
         <span class="badge-tag">DASHBOARD</span>
         <h1>Welcome, <span><?php echo htmlspecialchars($_SESSION['username']); ?></span> 👋</h1>
@@ -105,7 +115,7 @@ require 'layout/header.php';
             <span class="value">Online</span>
         </div>
     </div>
-</body>
+</div>
 
 <?php
 require 'layout/footer.php';
