@@ -36,7 +36,6 @@ require 'layout/header.php';
         border: 1px solid var(--border-color);
         border-radius: 16px;
         padding: 32px;
-        margin-bottom: 24px;
     }
     .welcome-card .badge-tag {
         display: inline-block;
