@@ -17,9 +17,9 @@ $projects = [
         'desc'  => 'Portfolio & dashboard system built with PHP sessions, custom login, and a reusable layout for header/footer.',
     ],
     [
-        'image' => '../Images/minisode3.jpg',
-        'title' => 'Lorem Ipsum',
-        'desc'  => 'Lorem ipsum dolor sit amet',
+        'image' => '../Images/scratch.png',
+        'title' => 'Scratch Game',
+        'desc'  => 'A game created for a promotional event by SMP 22 Samarinda at SMK TI Airlangga',
     ],
 ];
 ?>
