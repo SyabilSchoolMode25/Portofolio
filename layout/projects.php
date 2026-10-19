@@ -1,10 +1,11 @@
 <?php
 require 'session_check.php';
+require_once __DIR__ . '/../config/database.php';
 
 require 'header.php';
 require 'layout.php';
 
-/* Daftar project. Mau nambah project? Tinggal tambah 1 baris array di sini. */
+/* Project bawaan (statis). Project baru dari form tambah-project.php diambil dari database. */
 $projects = [
     [
         'image' => '../Images/crud.jpeg',
@@ -22,6 +23,20 @@ $projects = [
         'desc'  => 'A game created for a promotional event by SMP 22 Samarinda at SMK TI Airlangga',
     ],
 ];
+
+/* Ambil project dari database, lalu gabungkan ke daftar (image = null -> pakai placeholder) */
+try {
+    $stmt = $pdo->query('SELECT * FROM projects ORDER BY dibuat_pada ASC');
+    foreach ($stmt->fetchAll() as $row) {
+        $projects[] = [
+            'image' => null,
+            'title' => $row['judul'],
+            'desc'  => $row['deskripsi'],
+        ];
+    }
+} catch (PDOException $e) {
+    // kalau database error, tetap tampilkan project statis
+}
 ?>
 
 <style>
@@ -38,7 +53,6 @@ $projects = [
         flex-direction: column;
         animation: fadeUp 0.6s ease both;
     }
-    /* pola titik halus di background (sama kayak dashboard) */
     .projects-card::before {
         content: "";
         position: absolute;
@@ -47,9 +61,7 @@ $projects = [
         background-size: 24px 24px;
         pointer-events: none;
     }
-    .projects-card > * {
-        position: relative; /* biar di atas pola background */
-    }
+    .projects-card > * { position: relative; }
 
 /* ===== Header ===== */
     .projects-head {
@@ -70,17 +82,10 @@ $projects = [
         border-radius: 999px;
         margin-bottom: 14px;
     }
-    .projects-card h1 {
-        font-size: 2.6rem;
-        margin-bottom: 6px;
-    }
-    .projects-card h1 span {
-        color: var(--accent-color);
-    }
-    .projects-card .subtitle {
-        color: var(--text-sub);
-        font-size: 1.05rem;
-    }
+    .projects-card h1 { font-size: 2.6rem; margin-bottom: 6px; }
+    .projects-card h1 span { color: var(--accent-color); }
+    .projects-card .subtitle { color: var(--text-sub); font-size: 1.05rem; }
+    .head-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
     .projects-card .count-pill {
         font-size: 0.9rem;
         font-weight: 700;
@@ -90,8 +95,31 @@ $projects = [
         background-color: var(--bg-color);
         white-space: nowrap;
     }
-    .projects-card .count-pill b {
-        color: var(--accent-color);
+    .projects-card .count-pill b { color: var(--accent-color); }
+
+    /* tombol tambah project */
+    .btn-add {
+        display: inline-block;
+        padding: 9px 20px;
+        border-radius: 999px;
+        background-color: var(--accent-color);
+        color: #fff;
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: transform 0.25s ease;
+    }
+    .btn-add:hover { transform: translateY(-2px); }
+
+    .alert-success {
+        background-color: rgba(46, 164, 79, 0.12);
+        border: 1px solid #2ea44f;
+        color: #2ea44f;
+        padding: 10px 14px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        font-size: 0.9rem;
     }
 
 /* ===== Grid & card project ===== */
@@ -114,12 +142,8 @@ $projects = [
         animation: fadeUp 0.6s ease both;
         animation-delay: calc(var(--i) * 0.1s + 0.15s);
     }
-    .project-card:hover {
-        transform: translateY(-4px);
-        border-color: var(--accent-color);
-    }
+    .project-card:hover { transform: translateY(-4px); border-color: var(--accent-color); }
 
-    /* area gambar: ikut memanjang, ada nomor urut di pojok */
     .project-media {
         position: relative;
         flex: 1;
@@ -137,9 +161,22 @@ $projects = [
         display: block;
         transition: transform 0.4s ease;
     }
-    .project-card:hover .project-media img {
-        transform: scale(1.05);
+    .project-card:hover .project-media img { transform: scale(1.05); }
+
+    /* placeholder untuk project dari database (belum ada gambar) */
+    .project-placeholder {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3.5rem;
+        font-weight: 800;
+        color: var(--accent-color);
+        background-image: radial-gradient(rgba(88, 166, 255, 0.18) 1px, transparent 1px);
+        background-size: 18px 18px;
     }
+
     .project-index {
         position: absolute;
         top: 12px;
@@ -155,18 +192,9 @@ $projects = [
         border-radius: 999px;
     }
 
-    .project-body {
-        padding: 18px;
-    }
-    .project-body h4 {
-        font-size: 1.1rem;
-        margin-bottom: 8px;
-        color: var(--text-main);
-    }
-    .project-body p {
-        font-size: 0.88rem;
-        color: var(--text-sub);
-    }
+    .project-body { padding: 18px; }
+    .project-body h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text-main); }
+    .project-body p { font-size: 0.88rem; color: var(--text-sub); }
 
 /* ===== Animasi ===== */
     @keyframes fadeUp {
@@ -182,15 +210,26 @@ $projects = [
             <h1>My <span>Projects</span></h1>
             <p class="subtitle">Kumpulan project yang pernah aku kerjain.</p>
         </div>
-        <div class="count-pill"><b><?php echo count($projects); ?></b> Projects</div>
+        <div class="head-actions">
+            <div class="count-pill"><b><?php echo count($projects); ?></b> Projects</div>
+            <a href="../tambah-project.php" class="btn-add">+ Tambah Project</a>
+        </div>
     </div>
+
+    <?php if (($_GET['status'] ?? '') === 'tambah'): ?>
+        <div class="alert-success">Project berhasil ditambahkan.</div>
+    <?php endif; ?>
 
     <div class="project-grid">
         <?php foreach ($projects as $i => $project): ?>
             <div class="project-card" style="--i: <?php echo $i; ?>">
                 <div class="project-media">
                     <span class="project-index"><?php echo str_pad($i + 1, 2, '0', STR_PAD_LEFT); ?></span>
-                    <img src="<?php echo htmlspecialchars($project['image']); ?>" alt="<?php echo htmlspecialchars($project['title']); ?>">
+                    <?php if (!empty($project['image'])): ?>
+                        <img src="<?php echo htmlspecialchars($project['image']); ?>" alt="<?php echo htmlspecialchars($project['title']); ?>">
+                    <?php else: ?>
+                        <div class="project-placeholder"><?php echo htmlspecialchars(mb_strtoupper(mb_substr($project['title'], 0, 1))); ?></div>
+                    <?php endif; ?>
                 </div>
                 <div class="project-body">
                     <h4><?php echo htmlspecialchars($project['title']); ?></h4>
