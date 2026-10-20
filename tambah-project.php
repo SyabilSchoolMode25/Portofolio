@@ -3,7 +3,7 @@
 require 'layout/session_check.php';
 require_once __DIR__ . '/config/database.php';
 
-$error = '';
+$errors = [];
 $judul = '';
 $deskripsi = '';
 
@@ -11,31 +11,31 @@ $deskripsi = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // 3. Ambil data dari $_POST
-    $judul     = trim($_POST['judul'] ?? '');
-    $deskripsi = trim($_POST['deskripsi'] ?? '');
+    $judul      = trim($_POST['judul'] ?? '');
+    $deskripsi  = trim($_POST['deskripsi'] ?? '');
 
-    if ($judul === '' || $deskripsi === '') {
-        $error = 'Judul dan deskripsi wajib diisi.';
-    } else {
-        try {
-            // siapkan query dengan prepare()
-            $stmt = $pdo->prepare(
-                'INSERT INTO projects (judul, deskripsi) VALUES (:judul, :deskripsi)'
-            );
+    // ===== VALIDASI =====
+    if ($judul === '') {
+        $errors[] = 'Judul wajib diisi.';
+    }
 
-            // 4. Jalankan execute() untuk INSERT data ke tabel projects
-            $stmt->execute([
-                ':judul'     => $judul,
-                ':deskripsi' => $deskripsi,
-            ]);
+    // Kalau tidak ada error, baru simpan ke database
+    if (empty($errors)) {
+        // siapkan query dengan prepare()
+        $stmt = $pdo->prepare(
+            'INSERT INTO projects (judul, deskripsi)
+            VALUES (:judul, :deskripsi)'
+        );
 
-            // 5. Redirect ke layout/projects.php
-            header('Location: layout/projects.php?status=tambah');
-            exit;
-        } catch (PDOException $e) {
-            $error = 'Gagal menyimpan project. Coba lagi.';
-            // error_log($e->getMessage());
-        }
+        // 4. Jalankan execute() untuk INSERT data ke tabel projects
+        $stmt->execute([
+            'judul'       => $judul,
+            'deskripsi'   => $deskripsi,
+        ]);
+
+        // 5. Redirect ke halaman projects
+        header('Location: layout/projects.php?status=tambah');
+        exit;
     }
 }
 
@@ -46,30 +46,36 @@ require 'layout/layout.php';
 
 <div class="form-card">
     <span class="badge-tag">CREATE</span>
-    <h1>Tambah <span class="name">Project</span></h1>
+    <h1>Tambah <span class="name">Project</span> Baru</h1>
     <p class="sub">Isi form di bawah, lalu klik Simpan.</p>
 
-    <?php if ($error !== ''): ?>
-        <div class="alert-error"><?= htmlspecialchars($error) ?></div>
+    <?php if (!empty($errors)): ?>
+        <div class="alert-error">
+            <ul>
+                <?php foreach ($errors as $pesan): ?>
+                    <li><?= htmlspecialchars($pesan) ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
     <?php endif; ?>
 
-    <form method="POST" action="tambah-project.php">
+    <form method="POST" action="tambah-project.php" novalidate>
         <div class="form-group">
-            <label for="judul">Judul</label>
+            <label for="judul">Judul Project</label>
             <input type="text" id="judul" name="judul"
                 value="<?= htmlspecialchars($judul) ?>"
-                placeholder="Contoh: Personal Portfolio Website" required>
+                placeholder="Contoh: Personal Portfolio Website">
         </div>
 
         <div class="form-group">
             <label for="deskripsi">Deskripsi</label>
-            <textarea id="deskripsi" name="deskripsi" rows="5"
-                    placeholder="Ceritakan singkat tentang project ini..." required><?= htmlspecialchars($deskripsi) ?></textarea>
+            <textarea id="deskripsi" name="deskripsi" rows="4"
+                    placeholder="Ceritakan singkat tentang project ini..."><?= htmlspecialchars($deskripsi) ?></textarea>
         </div>
 
         <div class="form-actions">
             <a href="layout/projects.php" class="btn btn-secondary">Batal</a>
-            <button type="submit" class="btn btn-primary">Simpan</button>
+            <button type="submit" class="btn btn-primary">Simpan Project</button>
         </div>
     </form>
 </div>
@@ -190,6 +196,8 @@ require 'layout/layout.php';
     margin-bottom: 18px;
     font-size: 0.9rem;
 }
+
+.alert-error ul { margin: 0; padding-left: 18px; }
 
 @keyframes fadeUp {
     from { opacity: 0; transform: translateY(16px); }
