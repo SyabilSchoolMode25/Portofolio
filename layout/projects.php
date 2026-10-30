@@ -256,11 +256,15 @@ try {
                     <p><?php echo htmlspecialchars($project['desc']); ?></p>
 
                     <?php if (!empty($project['id'])): ?>
-                        <form method="POST" action="../hapus-project.php"
-                            onsubmit="return confirm('Hapus project ini?');">
-                            <input type="hidden" name="id" value="<?php echo (int)$project['id']; ?>">
-                            <button type="submit" class="btn-delete">Hapus</button>
-                        </form>
+                        <div class="project-actions">
+                            <a href="../edit-project.php?id=<?php echo (int)$project['id']; ?>" class="btn-edit">Edit</a>
+
+                            <form method="POST" action="../hapus-project.php"
+                                onsubmit="return confirm('Hapus project ini?');">
+                                <input type="hidden" name="id" value="<?php echo (int)$project['id']; ?>">
+                                <button type="submit" class="btn-delete">Hapus</button>
+                            </form>
+                        </div>
                     <?php endif; ?>
                 </div>
             </div>
