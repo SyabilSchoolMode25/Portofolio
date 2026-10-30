@@ -32,6 +32,15 @@ $projects = $stmt->fetchAll();
                             <button type="submit">Hapus</button>
                         </form>
                     </td>
+                    <td>
+                        <a href="edit-project.php?id=<?= (int) $project['id'] ?>">Edit</a>
+                        
+                        <form method="post" action="hapus-project.php" style="display:inline"
+                            onsubmit="return confirm('Hapus project ini?');">
+                            <input type="hidden" name="id" value="<?= $project['id'] ?>">
+                            <button type="submit">Hapus</button>
+                        </form>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </table>
