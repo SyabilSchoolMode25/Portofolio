@@ -25,17 +25,19 @@ $projects = [
 ];
 
 /* Ambil project dari database, lalu gabungkan ke daftar (image = null -> pakai placeholder) */
+$dbError = null;
 try {
-    $stmt = $pdo->query('SELECT * FROM projects ORDER BY dibuat_pada ASC');
+    $stmt = $pdo->query('SELECT id, judul, deskripsi FROM projects ORDER BY id ASC');
     foreach ($stmt->fetchAll() as $row) {
         $projects[] = [
+            'id'    => $row['id'],
             'image' => null,
             'title' => $row['judul'],
             'desc'  => $row['deskripsi'],
         ];
     }
 } catch (PDOException $e) {
-    // kalau database error, tetap tampilkan project statis
+    $dbError = $e->getMessage();
 }
 ?>
 
@@ -201,6 +203,29 @@ try {
         from { opacity: 0; transform: translateY(16px); }
         to   { opacity: 1; transform: translateY(0); }
     }
+
+.btn-delete {
+    margin-top: 14px;
+    padding: 7px 18px;
+    border-radius: 999px;
+    border: 1px solid #f85149;
+    background: transparent;
+    color: #f85149;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease;
+}
+.btn-delete:hover { background: #f85149; color: #fff; }
+.alert-error {
+    background-color: rgba(248, 81, 73, 0.12);
+    border: 1px solid #f85149;
+    color: #f85149;
+    padding: 10px 14px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
 </style>
 
 <div class="projects-card">
@@ -216,8 +241,13 @@ try {
         </div>
     </div>
 
+    <?php if ($dbError): ?>
+        <div class="alert-error">Error database: <?php echo htmlspecialchars($dbError); ?></div>
+    <?php endif; ?>
     <?php if (($_GET['status'] ?? '') === 'tambah'): ?>
         <div class="alert-success">Project berhasil ditambahkan.</div>
+    <?php elseif (($_GET['status'] ?? '') === 'hapus'): ?>
+        <div class="alert-success">Project berhasil dihapus.</div>
     <?php endif; ?>
 
     <div class="project-grid">
@@ -234,6 +264,14 @@ try {
                 <div class="project-body">
                     <h4><?php echo htmlspecialchars($project['title']); ?></h4>
                     <p><?php echo htmlspecialchars($project['desc']); ?></p>
+
+                    <?php if (!empty($project['id'])): ?>
+                        <form method="POST" action="../hapus-project.php"
+                            onsubmit="return confirm('Hapus project ini?');">
+                            <input type="hidden" name="id" value="<?php echo (int)$project['id']; ?>">
+                            <button type="submit" class="btn-delete">Hapus</button>
+                        </form>
+                    <?php endif; ?>
                 </div>
             </div>
         <?php endforeach; ?>
