@@ -194,28 +194,28 @@ try {
         to   { opacity: 1; transform: translateY(0); }
     }
 
-.btn-delete {
-    margin-top: 14px;
-    padding: 7px 18px;
-    border-radius: 999px;
-    border: 1px solid #f85149;
-    background: transparent;
-    color: #f85149;
-    font-size: 0.85rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background 0.25s ease, color 0.25s ease;
-}
-.btn-delete:hover { background: #f85149; color: #fff; }
-.alert-error {
-    background-color: rgba(248, 81, 73, 0.12);
-    border: 1px solid #f85149;
-    color: #f85149;
-    padding: 10px 14px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    font-size: 0.9rem;
-}
+    .project-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 14px;
+    }
+    .btn-edit,
+    .btn-delete {
+        display: inline-block;
+        padding: 7px 18px;
+        border-radius: 999px;
+        background: transparent;
+        font-family: inherit;
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background 0.25s ease, color 0.25s ease;
+    }
+    .btn-edit { border: 1px solid var(--accent-color); color: var(--accent-color); }
+    .btn-edit:hover { background: var(--accent-color); color: #fff; }
+    .btn-delete { border: 1px solid #f85149; color: #f85149; }
+    .btn-delete:hover { background: #f85149; color: #fff; }
 </style>
 
 <div class="projects-card">
