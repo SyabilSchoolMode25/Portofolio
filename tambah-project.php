@@ -21,21 +21,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Kalau tidak ada error, baru simpan ke database
     if (empty($errors)) {
-        // siapkan query dengan prepare()
-        $stmt = $pdo->prepare(
-            'INSERT INTO projects (judul, deskripsi)
-            VALUES (:judul, :deskripsi)'
-        );
+        try {
+            $stmt = $pdo->prepare(
+                'INSERT INTO projects (judul, deskripsi) VALUES (:judul, :deskripsi)'
+            );
+            $stmt->execute([
+                'judul'     => $judul,
+                'deskripsi' => $deskripsi,
+            ]);
 
-        // 4. Jalankan execute() untuk INSERT data ke tabel projects
-        $stmt->execute([
-            'judul'       => $judul,
-            'deskripsi'   => $deskripsi,
-        ]);
-
-        // 5. Redirect ke halaman projects
-        header('Location: layout/projects.php?status=tambah');
-        exit;
+            header('Location: layout/projects.php?status=tambah');
+            exit;
+        } catch (PDOException $e) {
+            $errors[] = 'Gagal menyimpan: ' . $e->getMessage();
+        }
     }
 }
 
