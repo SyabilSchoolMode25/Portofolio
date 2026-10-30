@@ -5,33 +5,23 @@ require_once __DIR__ . '/../config/database.php';
 require 'header.php';
 require 'layout.php';
 
-/* Project bawaan (statis). Project baru dari form tambah-project.php diambil dari database. */
-$projects = [
-    [
-        'image' => '../Images/crud.jpeg',
-        'title' => 'Anime Data CRUD Program',
-        'desc'  => 'Python-backed CLI/Data System for anime library management created for Gelar Karya.',
-    ],
-    [
-        'image' => '../Images/portofolio.png',
-        'title' => 'Personal Portfolio Website',
-        'desc'  => 'Portfolio & dashboard system built with PHP sessions, custom login, and a reusable layout for header/footer.',
-    ],
-    [
-        'image' => '../Images/scratch.png',
-        'title' => 'Scratch Game',
-        'desc'  => 'A game created for a promotional event by SMP 22 Samarinda at SMK TI Airlangga',
-    ],
+/* Gambar untuk project lama (berdasarkan id). Project baru pakai placeholder. */
+$images = [
+    1 => '../Images/crud.jpeg',
+    2 => '../Images/portofolio.png',
+    3 => '../Images/scratch.png',
 ];
 
-/* Ambil project dari database, lalu gabungkan ke daftar (image = null -> pakai placeholder) */
-$dbError = null;
+/* Semua project diambil dari database, yang baru otomatis di bawah */
+$projects = [];
+$dbError  = null;
+
 try {
     $stmt = $pdo->query('SELECT id, judul, deskripsi FROM projects ORDER BY id ASC');
     foreach ($stmt->fetchAll() as $row) {
         $projects[] = [
             'id'    => $row['id'],
-            'image' => null,
+            'image' => $images[$row['id']] ?? null,
             'title' => $row['judul'],
             'desc'  => $row['deskripsi'],
         ];

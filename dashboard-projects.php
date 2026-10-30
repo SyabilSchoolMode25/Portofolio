@@ -25,6 +25,13 @@ $projects = $stmt->fetchAll();
                 <tr>
                     <td><?= htmlspecialchars($project['judul']) ?></td>
                     <td><?= htmlspecialchars($project['deskripsi']) ?></td>
+                    <td>
+                        <form method="post" action="hapus-project.php" 
+                            onsubmit="return confirm('Hapus project ini?');">
+                            <input type="hidden" name="id" value="<?= $project['id'] ?>">
+                            <button type="submit">Hapus</button>
+                        </form>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </table>
